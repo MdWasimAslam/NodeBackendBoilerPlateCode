@@ -1,20 +1,8 @@
-const cors = require ('cors');
-const express = require('express');
-const bodyParser = require('body-parser')
-
-
+// index.js
+const express = require("express");
 const app = express();
-app.use(cors());
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
 
-require("./getApp.js")(app)
-require("./postApp.js")(app)
+app.get("/", (req, res) => res.send("OK - Node app is running"));
 
-app.get('/', (req, res)=>{
-	res.status(200).send({"title":"home"});
-});
-
-app.listen(3000, (error) =>{
-	console.log("Listening to port...")
-});
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, "0.0.0.0", () => console.log("Listening on", PORT));
